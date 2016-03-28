@@ -1,4 +1,3 @@
-import java.util.HashSet;
 import java.util.Scanner;
 
 /**
@@ -12,70 +11,35 @@ public class lotto
     {
         Scanner in = new Scanner(System.in);
 
-        HashSet<lotto> set = new HashSet<>();
+        int[][] allSets = new int[11][2001];
+
+        for (int i = 1; i < 2001; i++)
+        {
+            allSets[1][i] = i;
+        }
+
+        for (int i = 2; i < 11; i++)
+        {
+            int min = (int)Math.pow(2, i-1);
+            allSets[i][min] = 1;
+            for (int j = min + 1; j < 2001; j++)
+            {
+                for (int k = j; k >= min; k--)
+                {
+                    allSets[i][j] += allSets[i - 1][(int)Math.floor(k/2)];
+                }
+            }
+        }
+
         int caseNum = 1;
-        int lists;
-        int n = in.nextInt(), m =in.nextInt();
+        int n = in.nextInt(), m = in.nextInt();
 
         while (n != 0)
         {
-            lists = 0;
-            lotto top = new lotto(n);
-            top.set(m, n-1);
-            for (int i = n - 2; i > -1; i--)
-            {
-                top.set((int)Math.floor(top.get(i+1)/2),i);
-            }
-            set.add(top);
-            lists++;
-
-            System.out.println("Case " + caseNum + ": n = " + n + ", m = " + m + " # lists = " + lists);
+            System.out.println("Case " + caseNum + ": n = " + n + ", m = " + m + ", # lists = " + allSets[n][m]);
             caseNum++;
             n = in.nextInt();
             m =in.nextInt();
         }
-    }
-
-    int[] arr;
-    public lotto(int[] arr)
-    {
-        this.arr = arr;
-    }
-
-    public lotto(int size)
-    {
-        this.arr = new int[size];
-    }
-
-    public int get(int i)
-    {
-        return this.arr[i];
-    }
-
-    public void set(int i, int index)
-    {
-        this.arr[index] = i;
-    }
-
-    public void set(int[] arr)
-    {
-        this.arr = arr;
-    }
-
-    public int size()
-    {
-        return this.arr.length;
-    }
-
-    @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        for (int i = 0; i < this.arr.length; i++)
-        {
-            hash *= 10;
-            hash += this.arr[i];
-        }
-        return hash;
     }
 }

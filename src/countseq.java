@@ -55,38 +55,6 @@ public class countseq
         }
     }
 
-    /*public static int sequences(HashMap<Character, ArrayList<Integer>> map,
-                                String seq, int[] low)
-    {
-        ArrayList<Integer> list = map.get(seq.charAt(0));
-        int val = 0;
-        for (int i = low[0]; i < list.size(); i++)
-        {
-            low[0] = i;
-            val += sequences(map, seq, 1, list.get(i), low);
-        }
-        return val;
-    }
-
-    public static int sequences(HashMap<Character, ArrayList<Integer>> map,
-                                String seq, int index, int pos, int[] low)
-    {
-        if (index == seq.length())
-        {
-            return 1;
-        }
-        ArrayList<Integer> list = map.get(seq.charAt(index));
-        for (int i = low[index]; i < list.size(); i++)
-        {
-            if (list.get(i) > pos)
-            {
-                low[index] = i;
-                return (list.size() - i) * sequences(map, seq, index + 1, list.get(i), low);
-            }
-        }
-        return 0;
-    }*/
-
     public static void sequences(HashMap<Character, ArrayList<Integer>> map,
                                 String seq, int index, int pos, int[] low)
     {
