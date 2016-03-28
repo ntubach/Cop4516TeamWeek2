@@ -8,7 +8,7 @@ public class Test
     public static void main(String[] args)
     {
         ProgramTestFile ptf = new ProgramTestFile("src/test.in", "src/test.out");
-        if (ptf.isCorrect(new ProgramTestParams(null, countseq.class)))
+        if (ptf.isCorrect(new ProgramTestParams(null, robot.class)))
         {
             System.out.println("solution is correct.");
         }

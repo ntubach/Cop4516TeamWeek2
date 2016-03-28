@@ -17,15 +17,9 @@ public class robot
         float[] x = new float[1002];
         float[] y = new float[1002];
         float[] p = new float[1002];
-        /*float[] table = new float[n];
-        Target[] targets = new Target[n];*/
 
         while(n!=0)
         {
-            /*
-            float xPos = 0;
-            float yPos = 0;
-            float dist = 0;*/
             for(int i = 1; i < n + 1; i++)
             {
                 x[i] = in.nextInt();
@@ -35,6 +29,16 @@ public class robot
 
             x[n+1] = 100;
             y[n+1] = 100;
+
+            for (int i = 1; i < n + 2; i++)
+            {
+                for (int j = n - 1; j > 0; j--)
+                {
+                    float xdis = x[i] - x[j];
+                    float ydis = y[i] - y[j];
+                    tbl[i][j] = Math.sqrt(xdis*xdis + ydis*ydis) + 1;
+                }
+            }
 
             for (int i = 1; i < n + 2; i++)
             {
@@ -51,17 +55,5 @@ public class robot
             n = in.nextInt();
         }
 
-    }
-}
-
-class Target{
-    int x;
-    int y;
-    int p;
-
-    public void Target(int a, int b, int c){
-        x = a;
-        y = b;
-        p = c;
     }
 }
