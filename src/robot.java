@@ -13,29 +13,40 @@ public class robot
         Scanner in = new Scanner(System.in);
 
         int n = in.nextInt();
-        float[] table = new float[n];
-        Target[] targets = new Target[n];
+        double[][] tbl = new double[1002][1002];
+        float[] x = new float[1002];
+        float[] y = new float[1002];
+        float[] p = new float[1002];
+        /*float[] table = new float[n];
+        Target[] targets = new Target[n];*/
 
-        while(n!=0){
+        while(n!=0)
+        {
+            /*
             float xPos = 0;
             float yPos = 0;
-            float dist = 0;
-            for(int i = 0; i < n; i++)
+            float dist = 0;*/
+            for(int i = 1; i < n + 1; i++)
             {
-                int x = in.nextInt();
-                int y = in.nextInt();
-                int p = in.nextInt();
-                targets[i].x = x;
-                targets[i].y = y;
-                targets[i].p = p;
-            }
-            table[0] = 0;
-            for(int i = 0; i < n; i++)
-            {
-
+                x[i] = in.nextInt();
+                y[i] = in.nextInt();
+                p[i] = in.nextInt();
             }
 
+            x[n+1] = 100;
+            y[n+1] = 100;
 
+            for (int i = 1; i < n + 2; i++)
+            {
+                float xdis = x[i] - x[i-1];
+                float ydis = y[i] - y[i-1];
+                double time = Math.sqrt(xdis*xdis + ydis*ydis) + 1;
+                for (int j = n; j < n + 1; j++)
+                {
+
+                }
+                tbl[i][i] = time + tbl[i-1][i-1];
+            }
 
             n = in.nextInt();
         }
