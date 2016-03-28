@@ -18,10 +18,6 @@ public class robot
         float[] y = new float[1002];
         float[] p = new float[1002];
 
-        // set end
-        x[n+1] = 100;
-        y[n+1] = 100;
-
         while(n!=0)
         {
             for(int i = 1; i < n + 1; i++)
@@ -30,7 +26,9 @@ public class robot
                 y[i] = in.nextInt();
                 p[i] = in.nextInt();
             }
-
+            // set end
+            x[n+1] = 100;
+            y[n+1] = 100;
 
             // set penalties for 0
             for (int i = 1; i < n + 2; i++)
@@ -67,7 +65,7 @@ public class robot
                 tbl[i][i] = tbl[i - 1][i] < tbl[i][i] ? tbl[i - 1][i] : tbl[i][i];
                 for (int j = i + 1; j < n + 2; j++)
                 {
-                    tbl[i][j] += tbl[j][j - (j - i + 1)] + tbl[i][i];
+                    tbl[i][j] += tbl[j][i] + tbl[i][i];
                     tbl[i][j] = tbl[i - 1][j] < tbl[i][j] ? tbl[i - 1][j] : tbl[i][j];
                 }
             }
