@@ -18,6 +18,10 @@ public class robot
         float[] y = new float[1002];
         float[] p = new float[1002];
 
+        // set end
+        x[n+1] = 100;
+        y[n+1] = 100;
+
         while(n!=0)
         {
             for(int i = 1; i < n + 1; i++)
@@ -27,9 +31,8 @@ public class robot
                 p[i] = in.nextInt();
             }
 
-            x[n+1] = 100;
-            y[n+1] = 100;
 
+            // set penalties for 0
             for (int i = 1; i < n + 2; i++)
             {
                 tbl[0][i] = tbl[0][i - 1] + p[i];
@@ -37,28 +40,40 @@ public class robot
 
             for (int i = 1; i < n + 2; i++)
             {
+                // set distances
                 for (int j = i - 1; j > - 1; j--)
                 {
                     float xdis = x[i] - x[j];
                     float ydis = y[i] - y[j];
                     tbl[i][j] = Math.sqrt(xdis*xdis + ydis*ydis) + 1;
                 }
+                // set penalties
                 for (int j = i + 1; j < n + 2; j++)
                 {
                     tbl[i][j] = tbl[i][j - 1] + p[j];
                 }
             }
 
+            // from start
+            for (int j = 1; j < n + 2; j++)
+            {
+                tbl[0][j] += tbl[j][0];
+            }
+
+            // solve
             for (int i = 1; i < n + 2; i++)
             {
-                for (int j = n; j < n + 1; j++)
-                {
-
-                }
                 tbl[i][i] = tbl[i][i-1] + tbl[i-1][i-1];
+                tbl[i][i] = tbl[i - 1][i] < tbl[i][i] ? tbl[i - 1][i] : tbl[i][i];
+                for (int j = i + 1; j < n + 2; j++)
+                {
+                    tbl[i][j] += tbl[j][j - (j - i + 1)] + tbl[i][i];
+                    tbl[i][j] = tbl[i - 1][j] < tbl[i][j] ? tbl[i - 1][j] : tbl[i][j];
+                }
             }
 
             System.out.printf("%.3f\n", tbl[n+1][n+1]);
+
             n = in.nextInt();
         }
 
