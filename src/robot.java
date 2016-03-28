@@ -38,7 +38,7 @@ public class robot
 
             for (int i = 1; i < n + 2; i++)
             {
-                // set distance from j to i
+                // set time from j to i
                 for (int j = i - 1; j > - 1; j--)
                 {
                     float xdis = x[i] - x[j];
