@@ -30,7 +30,7 @@ public class robot
             x[n+1] = 100;
             y[n+1] = 100;
 
-            // set penalties for 0
+            // set penalties for start
             for (int i = 1; i < n + 2; i++)
             {
                 tbl[0][i] = tbl[0][i - 1] + p[i];
@@ -38,14 +38,15 @@ public class robot
 
             for (int i = 1; i < n + 2; i++)
             {
-                // set distances
+                // set distance from j to i
                 for (int j = i - 1; j > - 1; j--)
                 {
                     float xdis = x[i] - x[j];
                     float ydis = y[i] - y[j];
+
                     tbl[i][j] = Math.sqrt(xdis*xdis + ydis*ydis) + 1;
                 }
-                // set penalties
+                // set penalties for target i to target j
                 for (int j = i + 1; j < n + 2; j++)
                 {
                     tbl[i][j] = tbl[i][j - 1] + p[j];
