@@ -30,6 +30,15 @@ public class robot
             x[n+1] = 100;
             y[n+1] = 100;
 
+            // initialize to zero
+            for (int i = 0; i < n + 2; i++)
+            {
+                for (int j = 0; j < n + 2; j++)
+                {
+                    tbl[i][j] = 0;
+                }
+            }
+
             // set penalties for start
             for (int i = 1; i < n + 2; i++)
             {
