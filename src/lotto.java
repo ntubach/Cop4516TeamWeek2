@@ -11,7 +11,7 @@ public class lotto
     {
         Scanner in = new Scanner(System.in);
 
-        int[][] allSets = new int[11][2001];
+        long[][] allSets = new long[11][2001];
 
         for (int i = 1; i < 2001; i++)
         {

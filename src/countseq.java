@@ -15,7 +15,7 @@ public class countseq
 
         for (int i = 0; i < n; i++)
         {
-            String s = in.next();
+            /*String s = in.next();
             String sequence = in.next();
 
             //set up map
@@ -50,8 +50,8 @@ public class countseq
             //setup test loop
             int[] lowIndex = new int[sequence.length()];
             total = 0;
-            sequences(seqMap, sequence, 0, -1, lowIndex);
-            System.out.println(total);
+            sequences(seqMap, sequence, 0, -1, lowIndex);*/
+            System.out.println(countMatches(in.next(), in.next()));
         }
     }
 
@@ -75,5 +75,30 @@ public class countseq
             }
         }
         return;
+    }
+
+    public static int countMatches(String seq, String subseq)
+    {
+        int[][] tbl = new int[seq.length() + 1][subseq.length() + 1];
+
+        /*for (int col = 0; col < subseq.length() + 1; col++)
+        {
+            tbl[0][col] = 1;
+        }*/
+
+        for (int row = 1; row < seq.length() + 1; row++)
+        {
+            for (int col = 1; col < subseq.length() + 1; col++)
+            {
+                if (seq.charAt(seq.length()-row) == subseq.charAt(subseq.length()-col))
+                {
+                    tbl[row][col] += tbl[row - 1][col - 1] + 1;
+                }
+
+                tbl[row][col] += tbl[row - 1][col];
+            }
+        }
+
+        return tbl[seq.length()][subseq.length()];
     }
 }
