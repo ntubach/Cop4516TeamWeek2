@@ -32,7 +32,7 @@ public class robot
 
             for (int i = 1; i < n + 2; i++)
             {
-                for (int j = n - 1; j > 0; j--)
+                for (int j = i - 1; j > - 1; j--)
                 {
                     float xdis = x[i] - x[j];
                     float ydis = y[i] - y[j];
