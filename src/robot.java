@@ -38,18 +38,19 @@ public class robot
                     float ydis = y[i] - y[j];
                     tbl[i][j] = Math.sqrt(xdis*xdis + ydis*ydis) + 1;
                 }
+                for (int j = i + 1; j > n + 2; j++)
+                {
+                    tbl[i][j] = tbl[i][j - 1] + p[j];
+                }
             }
 
             for (int i = 1; i < n + 2; i++)
             {
-                float xdis = x[i] - x[i-1];
-                float ydis = y[i] - y[i-1];
-                double time = Math.sqrt(xdis*xdis + ydis*ydis) + 1;
                 for (int j = n; j < n + 1; j++)
                 {
 
                 }
-                tbl[i][i] = time + tbl[i-1][i-1];
+                tbl[i][i] = tbl[i][i-1] + tbl[i-1][i-1];
             }
 
             n = in.nextInt();
