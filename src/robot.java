@@ -32,13 +32,18 @@ public class robot
 
             for (int i = 1; i < n + 2; i++)
             {
+                tbl[0][i] = tbl[0][i - 1] + p[i];
+            }
+
+            for (int i = 1; i < n + 2; i++)
+            {
                 for (int j = i - 1; j > - 1; j--)
                 {
                     float xdis = x[i] - x[j];
                     float ydis = y[i] - y[j];
                     tbl[i][j] = Math.sqrt(xdis*xdis + ydis*ydis) + 1;
                 }
-                for (int j = i + 1; j > n + 2; j++)
+                for (int j = i + 1; j < n + 2; j++)
                 {
                     tbl[i][j] = tbl[i][j - 1] + p[j];
                 }
@@ -53,6 +58,7 @@ public class robot
                 tbl[i][i] = tbl[i][i-1] + tbl[i-1][i-1];
             }
 
+            System.out.printf("%.3f\n", tbl[n+1][n+1]);
             n = in.nextInt();
         }
 
